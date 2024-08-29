@@ -1,10 +1,9 @@
 import express from "express";
 import cors from "cors";
-import defModels from "./models/defModels.js";
-import defRoutes from "./routes/routes.js";
-// import initRoutes from "./Routes/initialize.routes.js";
-// import initModels from "./Models/init.model.js";
-// import initAssociations from "./Models/associations.js";
+import initModels from "./models/init.model.js";
+import initAssociations from "./models/associations.js";
+import initStrategies from "./Auth/init.strategies.js";
+import initRoutes from "./Routes/initialize.routes.js";
 import db from "./config/configConnection.js";
 
 const app = express();
@@ -19,13 +18,13 @@ const initDataBase = async () => {
     console.log("Could not connect to the DB.");
 
     //initialize strategies
-    // initStrategies();
+    initStrategies();
 
     //initialize models of sequelizie that are created
-    defModels();
+    initModels();
 
     //initialize associations between the models
-    // initAssociations();
+    initAssociations();
 
     //sync models of sequelize that are created
     await db.sync({ alter: true });
@@ -37,7 +36,7 @@ const initDataBase = async () => {
 
 const port = 3000;
 
-defRoutes(app);
+initRoutes(app);
 console.log(process.env.REACT_APP_SUPABASE_URL);
 console.log("Routes initialized");
 initDataBase();
