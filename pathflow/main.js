@@ -37,7 +37,7 @@ const initDataBase = async () => {
 const port = 3000;
 
 initRoutes(app);
-console.log(process.env.REACT_APP_SUPABASE_URL);
+console.log(process.env.SUPABASE_URL);
 console.log("Routes initialized");
 initDataBase();
 

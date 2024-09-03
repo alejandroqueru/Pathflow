@@ -10,6 +10,7 @@ import {
   VideoBar,
   VideoChatMessage,
 } from "../design/Services";
+import { Inmigrant } from "../../models/immigrant.-model";
 
 const Services = () => {
   return (
@@ -30,21 +31,7 @@ const Services = () => {
               />
             </div>
             <div className="relative z-1 max-w-[17rem] ml-auto">
-              <h4 className="h4 mb-4">Smartest AI</h4>
-              <p className="body-2 mb-[3rem] text-n-3">
-                Brainwave unlocks the potencial of AI-powered applications
-              </p>
-              <ul className="body-2">
-                {brainwaveServices.map((item, index) => (
-                  <li
-                    key={index}
-                    className="flex items-start py-4 border-t border-n-6 space-x-4"
-                  >
-                    <img src={check} width={24} height={24} />
-                    <p>{item}</p>
-                  </li>
-                ))}
-              </ul>
+              <Inmigrant />
             </div>
             <Generating className="absolute left-4 right-4 bottom-4 boreder-n-1/10 border lg:left-1/2 lg-right-auto lg:bottom-8 lg:-translate-x-1/2" />
           </div>

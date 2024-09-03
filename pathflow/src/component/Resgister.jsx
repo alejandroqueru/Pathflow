@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { RegisterApi } from "../api/RegisterApi";
+import { RegisterApi } from "../api/RegisterApi.js";
 
 const Resgister = () => {
   const navigate = useNavigate();
   const registerMutation = useMutation({ mutationFn: RegisterApi });
-  const [name, setName] = useState();
-  const [firstSurname, setFirstSurname] = useState();
-  const [secondSurname, setSecondSurname] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   if (registerMutation.isSuccess) {
     return navigate("/login");
@@ -49,23 +48,11 @@ const Resgister = () => {
                 type="text"
                 placeholder="Ingresa tu primer apellido"
                 className="bg-gray-100 text-gray-800 py-2 pl-12 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5A7684]"
-                onChange={(event) => setFirstSurname(event.target.value)}
-                value={firstSurname}
+                onChange={(event) => setLastName(event.target.value)}
+                value={lastName}
               />
             </div>
-            <div className="relative mb-4 w-full max-w-md">
-              {/* <LayoutPanelTop
-                size={20}
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-              /> */}
-              <input
-                type="text"
-                placeholder="Ingresa tu segundo apellido"
-                className="bg-gray-100 text-gray-800 py-2 pl-12 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5A7684]"
-                onChange={(event) => setSecondSurname(event.target.value)}
-                value={secondSurname}
-              />
-            </div>
+
             <div className="relative mb-4 w-full max-w-md">
               {/* <Inbox
                 size={20}
@@ -95,11 +82,10 @@ const Resgister = () => {
             <button
               onClick={() =>
                 registerMutation.mutate({
-                  name,
-                  firstSurname,
-                  secondSurname,
                   email,
                   password,
+                  name,
+                  lastName,
                 })
               }
               className="bg-light-blue text-white py-2 px-20 rounded-lg hover:bg-[#5A7684] transition duration-300"
